@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome you All</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: aliceblue;
+            z-index: 1;
+        }
+        
+        .list {
+            list-style: none;
+            display: flex;
+            padding: 15px;
+        }
+        
+        .list li {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        
+        .list li:hover {
+            color: aqua;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+        }
+        
+        .slider .slide {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .inner-heading h3 {
+            font-size: 45px;
+            color: aqua;
+        }
+        
+        .inner-heading h2 {
+            font-size: 32px;
+            color: #444;
+        }
+        
+        .about-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .row {
+            padding: 50px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .box {
+            width: calc(20% - 20px);
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        
+        .heading {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .number {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        
+        .number .counting {
+            counter-reset: counting;
+            animation: countup 2s ease-out;
+        }
+        
+        @keyframes countup {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">my website logo</div>
+        <ol class="list">
+            <li>Home</li>
+            <li>About</li>
+            <li>Service</li>
+            <li>Contact</li>
+        </ol>
+    </header>
+    <div class="slider">
+        <div class="slide" style="background-image: url('slider-image1.jpg');"></div>
+        <div class="slide" style="background-image: url('slider-image2.jpg');"></div>
+        <div class="slide" style="background-image: url('slider-image3.jpg');"></div>
+    </div>
+    <br /><br />
+
+    <section id="mt_about">
+        <div class="container">
+            <div class="about">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="inner-heading">
+                            <h3>We Mind Your Business !!</h3>
+                            <h2>You Think We Built Your Vision</h2>
+                        </div>
+                        <p><strong>Are you desiring to achieve your digital dream with the best-combined services? Astream is here for you, to provide all types of digital support regarding personal or professional as well as e-commercial website issues. Apart from this, we deliver a wide range of services that meet your specific needs.</strong></p>
+                        <p>Get Your Personal Website / Business Website & E-commerce Website at an Affordable Cost</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="about-img">
+                            <img src="aboutimg.avif" alt="about">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br/>
+    <br/>
+
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                <div class="heading">Example</div>
+                <div class="counting number" data-target="1000">0</div>
+            </div>
+            <div class="box">
+                <div class="heading">Example</div>
+                <div class="counting number" data-target="2000">0</div>
+            </div>
+            <div class="box">
+                <div class="heading">Example</div>
+                <div class="counting number" data-target="300">0</div>
+            </div>
+            <div class="box">
+                <div class="heading">Example</div>
+                <div class="counting number" data-target="400">0</div>
+            </div>
+            <div class="box">
+                <div class="heading">Example</div>
+                <div class="counting number" data-target="50">0</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const countingElements = document.querySelectorAll(".number[data-target]");
+        function startCounting() {
+            countingElements.forEach(element => {
+                const target = parseInt(element.getAttribute("data-target"));
+                let current = 0;
+                const countingInterval = setInterval(() => {
+                    if (current >= target) {
+                        clearInterval(countingInterval);
+                    } else {
+                        current++;
+                        element.textContent = current;
+                    }
+                }, 10);
+            });
+        }
+        window.addEventListener("load", startCounting);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".slider").slick({
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 5000,
+            });
+        });
+    </script>
+</body>
+</html>
