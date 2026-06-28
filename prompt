@@ -1,0 +1,714 @@
+# AI Video Generation Platform from Supabase Articles
+
+Build a production-ready local application that automatically converts technical articles stored in Supabase into professional YouTube videos.
+
+## Goal
+
+The user should only publish an article.
+
+Everything else must happen automatically.
+
+Final output:
+
+* video.mp4
+* thumbnail.png
+* subtitles.srt
+* title.txt
+* description.txt
+* tags.txt
+* youtube.json
+
+---
+
+## Tech Stack
+
+Frontend:
+
+* Next.js
+* TailwindCSS
+
+Backend:
+
+* FastAPI (preferred) or Express.js
+
+Database:
+
+* Supabase
+
+Local AI:
+
+* Ollama
+
+Video Engine:
+
+* Remotion
+
+Video Rendering:
+
+* FFmpeg
+
+Voice:
+
+* Piper TTS
+
+Subtitle generation:
+
+* From narration timestamps
+
+Upload:
+
+* YouTube API
+
+Package Manager:
+
+* pnpm
+
+Language:
+
+* TypeScript where possible
+
+---
+
+## Folder Structure
+
+video-platform/
+
+app/
+
+backend/
+
+renderer/
+
+workers/
+
+assets/
+
+templates/
+
+voices/
+
+fonts/
+
+animations/
+
+generated/
+
+videos/
+
+thumbnails/
+
+subtitles/
+
+scripts/
+
+config/
+
+logs/
+
+---
+
+## Features
+
+### 1. Supabase Integration
+
+Connect to Supabase.
+
+Watch for newly published articles.
+
+Table example:
+
+articles
+
+id
+
+title
+
+slug
+
+content
+
+tags
+
+published
+
+youtube_generated
+
+youtube_url
+
+When:
+
+published=true
+
+and
+
+youtube_generated=false
+
+Start the pipeline automatically.
+
+---
+
+### 2. AI Script Generator
+
+Using Ollama.
+
+Input:
+
+Markdown article.
+
+Output:
+
+JSON only.
+
+Example:
+
+{
+"title": "...",
+"duration": 300,
+"scenes":[]
+}
+
+Each scene contains:
+
+scene_number
+
+title
+
+duration
+
+voiceover
+
+scene_type
+
+assets
+
+animations
+
+camera
+
+code_blocks
+
+terminal_commands
+
+diagram
+
+background
+
+subtitle
+
+No markdown.
+
+No explanations.
+
+Only JSON.
+
+---
+
+### 3. Scene Types
+
+Support:
+
+INTRO
+
+TITLE
+
+TEXT
+
+CODE
+
+TERMINAL
+
+DIAGRAM
+
+DATABASE
+
+API
+
+ARCHITECTURE
+
+FLOWCHART
+
+IMAGE
+
+ICON
+
+SUMMARY
+
+OUTRO
+
+---
+
+### 4. Asset System
+
+Create reusable assets.
+
+Example:
+
+assets/
+
+logos/
+
+git.svg
+
+docker.svg
+
+react.svg
+
+postgres.svg
+
+node.svg
+
+icons/
+
+api.svg
+
+database.svg
+
+cloud.svg
+
+server.svg
+
+folder.svg
+
+backgrounds/
+
+gradient1.png
+
+gradient2.png
+
+code.png
+
+terminal.png
+
+Automatically match assets based on article keywords.
+
+Example:
+
+Git
+
+↓
+
+git.svg
+
+Docker
+
+↓
+
+docker.svg
+
+PostgreSQL
+
+↓
+
+postgres.svg
+
+---
+
+### 5. Code Renderer
+
+Render code using syntax highlighting.
+
+Support:
+
+JavaScript
+
+TypeScript
+
+React
+
+Python
+
+SQL
+
+HTML
+
+CSS
+
+JSON
+
+YAML
+
+Markdown
+
+Animate:
+
+Typing
+
+Line highlight
+
+Zoom
+
+Cursor
+
+Code scrolling
+
+---
+
+### 6. Terminal Renderer
+
+Support animated typing.
+
+Example:
+
+$ git add .
+
+↓
+
+$ git commit
+
+↓
+
+$ git push
+
+Cursor blinking.
+
+Typing speed configurable.
+
+---
+
+### 7. Diagram Generator
+
+Convert AI output into Mermaid diagrams when applicable.
+
+Render diagrams into animated scenes.
+
+Support:
+
+Flowcharts
+
+Architecture
+
+Sequence diagrams
+
+Pipelines
+
+Trees
+
+Graphs
+
+---
+
+### 8. Voice Generation
+
+Generate narration locally using Piper.
+
+Save:
+
+voice.wav
+
+timestamps.json
+
+---
+
+### 9. Subtitle Generator
+
+Generate:
+
+subtitles.srt
+
+subtitles.vtt
+
+Perfect synchronization.
+
+---
+
+### 10. Video Renderer
+
+Use Remotion.
+
+Every scene is a React component.
+
+Examples:
+
+Intro.tsx
+
+Title.tsx
+
+Terminal.tsx
+
+Code.tsx
+
+Diagram.tsx
+
+Api.tsx
+
+Summary.tsx
+
+Renderer automatically selects the correct component from scene_type.
+
+---
+
+### 11. Thumbnail Generator
+
+Generate thumbnail using template.
+
+Include:
+
+Large title
+
+Topic icons
+
+Background
+
+Brand colors
+
+Export:
+
+thumbnail.png
+
+---
+
+### 12. SEO Generator
+
+Generate:
+
+YouTube title
+
+Description
+
+Tags
+
+Hashtags
+
+Category
+
+---
+
+### 13. YouTube Upload
+
+Support OAuth.
+
+Upload:
+
+Video
+
+Thumbnail
+
+Description
+
+Tags
+
+Store returned URL in Supabase.
+
+Update:
+
+youtube_generated=true
+
+youtube_url
+
+---
+
+### 14. Dashboard
+
+Show:
+
+Queued jobs
+
+Running jobs
+
+Completed jobs
+
+Failed jobs
+
+Logs
+
+Preview
+
+Download
+
+Retry
+
+---
+
+### 15. Video Templates
+
+Create reusable templates.
+
+Technical Template
+
+Tutorial Template
+
+Explainer Template
+
+Interview Template
+
+Architecture Template
+
+Comparison Template
+
+---
+
+### 16. AI Prompting
+
+System prompts should produce structured JSON only.
+
+Never produce markdown.
+
+Never produce explanations.
+
+---
+
+### 17. Pipeline
+
+Supabase
+
+↓
+
+Fetch Article
+
+↓
+
+Generate Script
+
+↓
+
+Generate Scene JSON
+
+↓
+
+Generate Voice
+
+↓
+
+Generate Assets
+
+↓
+
+Generate Diagrams
+
+↓
+
+Generate Subtitles
+
+↓
+
+Render Video
+
+↓
+
+Generate Thumbnail
+
+↓
+
+Generate SEO
+
+↓
+
+Upload
+
+↓
+
+Update Supabase
+
+---
+
+### 18. Configuration
+
+Use .env.
+
+SUPABASE_URL
+
+SUPABASE_KEY
+
+OLLAMA_URL
+
+YOUTUBE_CLIENT_ID
+
+YOUTUBE_SECRET
+
+PIPER_MODEL
+
+VIDEO_WIDTH
+
+VIDEO_HEIGHT
+
+FPS
+
+---
+
+### 19. Logging
+
+Every stage logs.
+
+Example:
+
+Fetching article
+
+Generating script
+
+Generating voice
+
+Rendering scene
+
+Rendering final video
+
+Uploading
+
+Completed
+
+---
+
+### 20. Architecture
+
+Everything must be modular.
+
+Every module replaceable.
+
+Example:
+
+Replace Piper with another TTS.
+
+Replace Ollama with another LLM.
+
+Replace Remotion with another renderer.
+
+No business logic duplication.
+
+---
+
+### 21. Future Expansion
+
+Design the system so later it can generate:
+
+YouTube Shorts
+
+Instagram Reels
+
+TikTok
+
+LinkedIn Videos
+
+Twitter Videos
+
+without changing the article parser.
+
+---
+
+### 22. Coding Standards
+
+Strong typing.
+
+Reusable components.
+
+SOLID principles.
+
+Error handling.
+
+Retries.
+
+Caching.
+
+Configuration-driven.
+
+Clean folder structure.
+
+Documentation.
+
+README.
+
+Docker support.
+
+Unit tests.
+
+Integration tests.
+
+The final project should run locally with a single command after installation and automatically process new published articles from Supabase into complete YouTube-ready videos.
